@@ -108,7 +108,7 @@ const vm = new Vue({
     },
     methods: {
         listDate: function() {
-            // w:[1,2],sp:[3,4,5],su:[6,[7,8],au:[9,10,11],w:[12]
+            // w:[1,2],sp:[3,4,5],su:[6,7,8],au:[9,10,11],w:[12]
             let seasonMap=['w','w','sp','sp','sp','su','su','su','au','au','au','w'],
               seasons={'w':'Winter','sp':'Spring','su':'Summer','au':'Autumn'},
               currentYM=((date.getFullYear()*100)+(date.getMonth()+1)),
@@ -126,6 +126,11 @@ const vm = new Vue({
                     let s=seasonMap[m-1];
                     let ys=y.toString()+s;
                     if(ys === prvYS) continue;
+                    if( m <= 1 && s === 'w'
+                      || m <= 4 && s === 'sp'
+                      || m <= 7 && s === 'su'
+                      || m <= 10 && s === 'au'
+                      || m === 12 && s === 'w') continue;
                     this.dateList.push({key:ys, date:(y+" "+seasons[s])});
                     prvYS=ys;
                 }
