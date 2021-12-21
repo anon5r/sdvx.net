@@ -71,9 +71,6 @@ exports.index=functions
             redirectURL = 'https://p.eagate.573.jp/game/sdvx/' + versionPath;
             if (addPath.length > 0 && addPath !== '/' && version < 6)
                 redirectURL += '/p' + addPath;
-        //} else if (req.path === '/ps') {
-        //  // /ps will be worked configured by firebase,json
-        //         res.redirect('https://itunes.apple.com/jp/app/sdvxpsiv/id1287152421?mt=8');
         } else if (/^floor/i.test(pathWithoutSlash)) {
             let addPath = req.path.substr(6);   // req.path starts with /floor
             redirectURL = 'https://p.eagate.573.jp/game/sdvx/sv/p/floor/' + addPath;
@@ -89,7 +86,6 @@ exports.index=functions
             redirectURL = 'https://p.eagate.573.jp/game/sdvx/' + versionPath;
             if (addPath.length > 0 && addPath !== '/' && version < 6)
                 redirectURL += '/p' + addPath;
-            //redirectURL = 'https://p.eagate.573.jp/game/sdvx/' + version + '/p' + addPath;
         } else {
             redirectURL = LATEST_URL + req.path;
         }
@@ -123,7 +119,7 @@ function numberToRoman(num)
     
     Object.keys(romanMap).forEach((roman) => {
         // Determine the number of matches
-        let matches = parseInt(n / roman[roman]);
+        let matches = parseInt(n / romanMap[roman]);
         // Store that many characters
         result += roman.repeat(matches);
         // Substring that from the number
