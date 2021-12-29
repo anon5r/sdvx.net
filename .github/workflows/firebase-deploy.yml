@@ -12,30 +12,23 @@ on:
   pull_request:
     branches:
     - main
-
-env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy-hosting:
-    name: Deploy Hosting
+  firebase-deploy:
+    name: Deploy Firebase
     runs-on: ubuntu-latest
+    env:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Deploy to Firebase
+        uses: actions/checkout@v2
+      - name: Deploy hosting
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting --message \"${{ github.event.head_commit.message }}\"
-  deploy-functions:
-    name: Deploy Functions
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Deploy to Firebase
+      - name: Deploy functions
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only functions --message \"${{ github.event.head_commit.message }}\"
