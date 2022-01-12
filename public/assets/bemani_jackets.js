@@ -109,8 +109,8 @@ const vm = new Vue({
     methods: {
         listDate: function() {
             // w:[1,2],sp:[3,4,5],su:[6,7,8],au:[9,10,11],w:[12]
-            let seasonMap=['w','w','sp','sp','sp','su','su','su','au','au','au','w'],
-              seasons={'w':'Winter','sp':'Spring','su':'Summer','au':'Autumn'},
+            let seasonMap=['w','w','sp','sp','sp','su','su','su','a','a','a','w'],
+              seasons={'w':'Winter','sp':'Spring','su':'Summer','a':'Autumn'},
               currentYM=((date.getFullYear()*100)+(date.getMonth()+1)),
               currentYS=(date.getFullYear().toString()+seasonMap[date.getMonth()+1]);
             if (date.getMonth()<1) {
@@ -129,7 +129,7 @@ const vm = new Vue({
                     if( m <= 1 && s === 'w'
                       || m <= 4 && s === 'sp'
                       || m <= 7 && s === 'su'
-                      || m <= 10 && s === 'au'
+                      || m <= 10 && s === 'a'
                       || m === 12 && s === 'w') continue;
                     this.dateList.push({key:ys, date:(y+" "+seasons[s])});
                     prvYS=ys;
