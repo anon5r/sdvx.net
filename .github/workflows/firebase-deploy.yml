@@ -26,12 +26,10 @@ jobs:
         with:
           args: deploy --only hosting --message \"${{ github.event.head_commit.message }}\"
         env:
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       - name: Deploy functions
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only functions --message \"${{ github.event.head_commit.message }}\"
         env:
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
