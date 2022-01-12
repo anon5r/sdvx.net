@@ -11,9 +11,10 @@ Redirector to SOUND VOLTEX official page
   - `/3` redirects to [SOUND VOLTEX III -GRAVITY WARS-](https://p.eagate.573.jp/game/sdvx/iii/p)
   - `/4` redirects to [SOUND VOLTEX IV -Heavenly Haven-](https://p.eagate.573.jp/game/sdvx/iv/p)
   - `/5` redirects to [SOUND VOLTEX V -Vivid Wave-](https://p.eagate.573.jp/game/sdvx/v/p)
+  - `/6` or `/xg` redirects to [SOUND VOLTEX Exceed Gear](https://p.eagate.573.jp/game/sdvx/vi/)
   - `/floor` redirects to [SOUND VOLTEX FLOOR](https://p.eagate.573.jp/game/sdvx/sv/p/floor/)
 
-`/<roman-numerals>` like `/iii`, `/iv` or `/v` will also redirect to each versions
+`/<roman-numerals>` like `/iii`, `/iv`, `/v`, or `/vi` will also redirect to each versions
 
 
 ## Quickly access under content

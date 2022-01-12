@@ -20,11 +20,11 @@
       "type": 302
     }, {
       "source": "/eacsdvx",
-      "destination": "https://p.eagate.573.jp/game/eacsdvx/iii/p/common/top.html",
+      "destination": "https://p.eagate.573.jp/game/eacsdvx/vi/index.html",
       "type": 302
     }, {
       "source": "/cs",
-      "destination": "https://p.eagate.573.jp/game/eacsdvx/iii/p/common/top.html",
+      "destination": "https://p.eagate.573.jp/game/eacsdvx/vi/index.html",
       "type": 302
     } ],
     "rewrites": [ {
@@ -37,5 +37,11 @@
       "source": "/**",
       "function": "index"
     } ]
+  },
+  "emulators": {
+    "hosting": {
+      "host": "localhost",
+      "port": "5010"
+    }
   }
 }
