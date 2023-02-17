@@ -20,8 +20,9 @@ Redirector to SOUND VOLTEX official page
 ## Quickly access under content
 
 Also you can redirects to under contents each versions.
-For example, if you want access your play data page of Heavenly Haven (version 4),
-when you access to `/4/profile/playdata`, then you will redirect to [Play data for Heavenly Haven](https://p.eagate.573.jp/game/sdvx/iv/p/playdata/profile/index.html) page. (You will need login for this page)
+For example, if you want see your play data page of EXCEED GEAR (version 6),
+when you access to `/playdata/profile`, you will redirect to you will redirect to [Player profile for EXCEED GEAR](https://p.eagate.573.jp/game/sdvx/vi/playdata/profile/index.html) page.
+Also, you can see customize skin, bgm for your data, request to `/6/playdata/customize`, you will redirect to [Player customize page for EXCEED GEAR](https://p.eagate.573.jp/game/sdvx/vi/playdata/customize/index.html). (require login)
 
 ## Others
 
