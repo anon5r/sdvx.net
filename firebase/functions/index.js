@@ -64,8 +64,10 @@ exports.index=functions
             if (req.path.length>(pathWithoutSlash.length + 1))
                 addPath = '/' + req.path.substr(pathWithoutSlash.length + 2);
             redirectURL = BASEURL + '/' + romanNum;
-            if (addPath.length > 0 && addPath !== '/' && version < 6)
-                redirectURL += '/p' + addPath;
+            if (addPath.length > 0 && addPath !== '/') {
+                if (version < 6) redirectURL += '/p';
+                redirectURL += addPath;
+            }
         } else if (/^(gw|hh|vw|eg)/i.test(pathWithoutSlash)) {
             // Short code
             let map = shortCode[pathWithoutSlash.substring(0, 2).toLowerCase()];
@@ -92,8 +94,11 @@ exports.index=functions
             if (req.path.length > r[0].length + 1)
                 addPath = '/' + req.path.substr(r[0].length + 1);
             redirectURL = BASEURL + path;
-            if (addPath.length > 0 && addPath !== '/' && version < 6)
-                redirectURL += '/p' + addPath;
+            if (addPath.length > 0 && addPath !== '/') {
+                if (version < 6)
+                    redirectURL += '/p';
+                redirectURL += addPath;
+            }
         } else {
             redirectURL = LATEST_URL + req.path;
         }
