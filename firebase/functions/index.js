@@ -1,15 +1,46 @@
-const functions = require('firebase-functions');
-
-const LATEST_URL = 'https://p.eagate.573.jp/game/sdvx/vi';
-const RECENT_URL = 'https://p.eagate.573.jp/game/sdvx/v/p';
+const functions = require('firebase-functions')
 
 const runtimeOpts = {
     timeoutSeconds: 10,
     memory: '128MB'
 }
 
+const BASEURL = 'https://p.eagate.573.jp/game/sdvx'
+const FLOOR_URL = BASEURL + '/sv/p/floor/'
+const LATEST_URL = BASEURL + '/vi'
+const RECENT_URL = BASEURL + '/v/p'
+
+const lastMajorRelease = 'Feb. 17, 2021'
+
+const shortCode = {
+    'sv':      // BOOTH
+    {
+        version: 1,
+        path: 'sv',
+    },
+    'gw':      // GRAVITY WARS
+    {
+        version: 3,
+        path: 'iii',
+    },
+    'hh':      // Heavenly Haven
+    {
+        version: 4,
+        path: 'iv',
+    },
+    'vw':      // Vivid Wave
+    {
+        version: 5,
+        path: 'v',
+    },
+    'eg':      // Exceed Gear
+    {
+        version: 6,
+        path: 'vi',
+    },
+}
+
 exports.index=functions
-    // .region('asia-northeast1')
     .runWith(runtimeOpts)
     .https.onRequest((req, res) => {
         console.info('req.path=',req.path);
@@ -20,11 +51,7 @@ exports.index=functions
             pathWithoutSlash = pathWithoutSlash.substr(0,pathWithoutSlash.indexOf('/'));
         
         if (req.path === null || req.path === '/') {
-            let nextRelease = new Date();
-            nextRelease.setFullYear(2021);	// 2021
-            nextRelease.setMonth(1);	// Feb
-            nextRelease.setDate(17);	// 17
-            if (Date.now() >= nextRelease.getTime())
+            if (Date.now() >= Date.parse(lastMajorRelease))
                 redirectURL = LATEST_URL;
             else
                 redirectURL = RECENT_URL;
@@ -36,56 +63,35 @@ exports.index=functions
             let addPath = '';
             if (req.path.length>(pathWithoutSlash.length + 1))
                 addPath = '/' + req.path.substr(pathWithoutSlash.length + 2);
-            redirectURL = 'https://p.eagate.573.jp/game/sdvx/' + romanNum;
+            redirectURL = BASEURL + '/' + romanNum;
             if (addPath.length > 0 && addPath !== '/' && version < 6)
                 redirectURL += '/p' + addPath;
-        } else if (/^(gw|hh|vw|eg|xg)/i.test(pathWithoutSlash)) {
+        } else if (/^(gw|hh|vw|eg)/i.test(pathWithoutSlash)) {
             // Short code
-            let versionPath = 'sv';
-            switch (pathWithoutSlash.substring(0, 2).toLowerCase()) {
-                case 'sv':      // BOOTH
-                    versionPath = 'sv';
-                    version = 1;
-                    break;
-                case 'gw':      // GRAVITY WARS
-                    versionPath = 'iii';
-                    version = 3;
-                    break;
-                case 'hh':      // Heavenly Haven
-                    versionPath = 'iv';
-                    version = 4;
-                    break;
-                case 'vw':      // Vivid Wave
-                    versionPath = 'v';
-                    version = 5;
-                    break;
-                case 'eg':      // Exceed Gear
-                case 'xg':      // Exceed Gear
-                    versionPath = 'vi';
-                    version = 6;
-                    break;
-            }
+            let map = shortCode[pathWithoutSlash.substring(0, 2).toLowerCase()];
+
             let addPath = '';
             if (req.path.length > 3)    // req.path will start likes /gw, /hh or /vw
                 addPath = '/' + req.path.substr(3);
-            redirectURL = 'https://p.eagate.573.jp/game/sdvx/' + versionPath;
+
+            redirectURL = BASEURL + '/' + map.path;
             if (addPath.length > 0 && addPath !== '/') {
-                if (version < 6) redirectURL += '/p';
+                if (map.version < 6) redirectURL += '/p';
                 redirectURL += addPath;
             }
         } else if (/^floor/i.test(pathWithoutSlash)) {
             let addPath = req.path.substr(6);   // req.path starts with /floor
-            redirectURL = 'https://p.eagate.573.jp/game/sdvx/sv/p/floor/' + addPath;
+            redirectURL = FLOOR_URL + addPath;
         } else if (/^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$/i.test(pathWithoutSlash)) {
             let r = pathWithoutSlash.match(/^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$/i);
-            let versionPath = r[0].toLowerCase();
-            version = romanToNumber(versionPath.toUpperCase());
-            if (versionPath === 'i')
-                versionPath = 'sv';
+            let path = r[0].toLowerCase();
+            version = romanToNumber(path.toUpperCase());
+            if (path === 'i')
+                path = 'sv';
             let addPath = '';
             if (req.path.length > r[0].length + 1)
                 addPath = '/' + req.path.substr(r[0].length + 1);
-            redirectURL = 'https://p.eagate.573.jp/game/sdvx/' + versionPath;
+            redirectURL = BASEURL + path;
             if (addPath.length > 0 && addPath !== '/' && version < 6)
                 redirectURL += '/p' + addPath;
         } else {
