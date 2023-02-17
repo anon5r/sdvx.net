@@ -69,8 +69,10 @@ exports.index=functions
             if (req.path.length > 3)    // req.path will start likes /gw, /hh or /vw
                 addPath = '/' + req.path.substr(3);
             redirectURL = 'https://p.eagate.573.jp/game/sdvx/' + versionPath;
-            if (addPath.length > 0 && addPath !== '/' && version < 6)
-                redirectURL += '/p' + addPath;
+            if (addPath.length > 0 && addPath !== '/') {
+                if (version < 6) redirectURL += '/p';
+                redirectURL += addPath;
+            }
         } else if (/^floor/i.test(pathWithoutSlash)) {
             let addPath = req.path.substr(6);   // req.path starts with /floor
             redirectURL = 'https://p.eagate.573.jp/game/sdvx/sv/p/floor/' + addPath;
