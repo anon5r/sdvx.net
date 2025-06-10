@@ -33,39 +33,3 @@ jobs:
           args: deploy --only functions --message \"${{ github.event.head_commit.message }}\"
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-# This is a basic workflow that is manually triggered
-
-name: GitHub Action for Firebase
-
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
-on:
-  push:
-    branches:
-      - main
-  
-  pull_request:
-    branches:
-    - main
-  
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  firebase-deploy:
-    name: Deploy Firebase
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: Deploy hosting
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting --message \"${{ github.event.head_commit.message }}\"
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-      - name: Deploy functions
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only functions --message \"${{ github.event.head_commit.message }}\"
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
