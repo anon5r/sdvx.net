@@ -6,8 +6,7 @@
     "source": "firebase/functions"
   },
   "hosting": {
-    "public": "public",
-    "source": "pages",
+    "public": "pages/public",
     "trailingSlash": true,
     "ignore": [
       "firebase.json",
