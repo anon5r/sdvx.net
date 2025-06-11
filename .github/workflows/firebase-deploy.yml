@@ -43,9 +43,7 @@ jobs:
       - name: Deploy hosting
         uses: w9jds/firebase-action@master
         with:
-          args: |
-            npm install -g pnpm@10.11.0 && 
-            deploy --only hosting --message \"${{ github.event.head_commit.message }}\"
+          args: deploy --only hosting --message \"${{ github.event.head_commit.message }}\"
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
