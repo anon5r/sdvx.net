@@ -20,13 +20,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'functions/package-lock.json'
+
+      - name: Install Functions Dependencies
+        run: |
+          cd functions
+          npm ci
+
       - name: Deploy hosting
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting --message \"${{ github.event.head_commit.message }}\"
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
       - name: Deploy functions
         uses: w9jds/firebase-action@master
         with:
