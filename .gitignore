@@ -6,6 +6,15 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
 # Firebase cache
 .firebase/
 
@@ -64,8 +73,7 @@ node_modules/
 # dotenv environment variables file
 .env
 
-# Idea workspace
-.idea/workspace.xml
-.idea/*.xml
+# IDE - JetBrains
+.idea/
 firebase/functions/.env.default
 firebase/functions/.env.local

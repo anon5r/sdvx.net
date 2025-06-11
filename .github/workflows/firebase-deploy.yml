@@ -8,11 +8,11 @@ on:
   push:
     branches:
       - main
-  
+
   pull_request:
     branches:
     - main
-  
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   firebase-deploy:
@@ -26,13 +26,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
-          cache-dependency-path: 'functions/package-lock.json'
+          cache: 'pnpm'
+          cache-dependency-path: 'firebase/functions/pnpm-lock.yaml'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
 
       - name: Install Functions Dependencies
         run: |
-          cd functions
-          npm ci
+          cd firebase/functions
+          pnpm install --frozen-lockfile
 
       - name: Deploy hosting
         uses: w9jds/firebase-action@master
