@@ -57,6 +57,8 @@ jobs:
       - name: Deploy functions
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only functions --message \"${{ github.event.head_commit.message }}\"
+          args: |
+            npm install -g pnpm@10.11.0 && 
+            deploy --only functions --message "${{ github.event.head_commit.message }}"
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
