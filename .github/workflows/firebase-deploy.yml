@@ -40,6 +40,13 @@ jobs:
           cd firebase/functions
           pnpm install --frozen-lockfile
 
+      - name: Enable webframeworks experiment
+        uses: w9jds/firebase-action@master
+        with:
+          args: experiments:enable webframeworks
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
       - name: Deploy hosting
         uses: w9jds/firebase-action@master
         with:
