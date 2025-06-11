@@ -66,5 +66,6 @@ node_modules/
 
 # Idea workspace
 .idea/workspace.xml
+.idea/*.xml
 firebase/functions/.env.default
 firebase/functions/.env.local

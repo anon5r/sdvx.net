@@ -8,17 +8,17 @@ Run on Firebase Functions (Cloud Functions)
 ## Check
 
 ```
-npm run lint
+pnpm run lint
 ```
 
 ## Debug
 
 ```
-npm run serve
+pnpm run serve
 ```
 
 ## Deploy
 
 ```
-npm run deploy
+pnpm run deploy
 ```
