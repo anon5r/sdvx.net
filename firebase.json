@@ -29,13 +29,13 @@
     } ],
     "rewrites": [ {
       "source": "/",
-      "function": "index"
+      "function": "redirector"
     }, {
       "source": "/index",
-      "function": "index"
+      "function": "redirector"
     }, {
       "source": "/**",
-      "function": "index"
+      "function": "redirector"
     } ]
   },
   "emulators": {
