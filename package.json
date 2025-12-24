@@ -1,13 +1,13 @@
 {
   "name": "sdvx.net",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SOUND VOLTEX Redirector",
   "keywords": [],
   "author": "anon5r",
   "license": "None",
   "private": true,
   "engines": {
-    "node": ">=22",
+    "node": ">=24",
     "pnpm": ">=10.11.0"
   },
   "workspaces": [
