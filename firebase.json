@@ -14,19 +14,25 @@
       "**/node_modules/**"
     ],
     "cleanUrls": true,
-    "redirects" : [ {
-      "source": "/apps/ps",
-      "destination": "https://itunes.apple.com/jp/app/sdvxpsiv/id1287152421?mt=8",
-      "type": 302
-    }, {
-      "source": "/eacsdvx",
-      "destination": "https://p.eagate.573.jp/game/eacsdvx/vi/index.html",
-      "type": 302
-    }, {
-      "source": "/cs",
-      "destination": "https://p.eagate.573.jp/game/eacsdvx/vi/index.html",
-      "type": 302
-    } ],
+    "redirects" : [
+      {
+        "source": "/apps/ps",
+        "destination": "https://itunes.apple.com/jp/app/sdvxpsiv/id1287152421?mt=8",
+        "type": 302
+      }, {
+        "source": "/eacsdvx",
+        "destination": "https://p.eagate.573.jp/game/eacsdvx/vi/index.html",
+        "type": 302
+      }, {
+        "source": "/cs",
+        "destination": "https://p.eagate.573.jp/game/eacsdvx/vi/index.html",
+        "type": 302
+      }, {
+        "source": "/vaddict",
+        "destination": "https://vaddict.b35.jp",
+        "type": 302
+      }
+    ],
     "rewrites": [ {
       "source": "/",
       "function": "redirector"

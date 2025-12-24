@@ -11,10 +11,10 @@ setGlobalOptions({
 
 const BASEURL = 'https://p.eagate.573.jp/game/sdvx';
 const FLOOR_URL = BASEURL + '/sv/p/floor/';
-const LATEST_URL = BASEURL + '/vi';
-const RECENT_URL = BASEURL + '/v/p';
+const LATEST_URL = BASEURL + '/vii';
+const RECENT_URL = BASEURL + '/vi';
 
-const lastMajorRelease = 'Feb. 17, 2021';
+const lastMajorRelease = 'Dec. 24, 2025';
 
 const shortCode = {
     'sv':      // BOOTH
@@ -42,6 +42,11 @@ const shortCode = {
           version: 6,
           path: 'vi',
       },
+    'nabla':   // Nabla
+      {
+          version: 7,
+          path: 'vii',
+      }
 };
 
 exports.redirector = onRequest((req, res) => {
@@ -70,7 +75,7 @@ exports.redirector = onRequest((req, res) => {
             if (version < 6) redirectURL += '/p';
             redirectURL += addPath;
         }
-    } else if (/^(gw|hh|vw|eg)/i.test(pathWithoutSlash)) {
+    } else if (/^(gw|hh|vw|eg|n)/i.test(pathWithoutSlash)) {
         // Short code
         let map = shortCode[pathWithoutSlash.substring(0, 2).toLowerCase()];
         
@@ -80,6 +85,7 @@ exports.redirector = onRequest((req, res) => {
         
         redirectURL = BASEURL + '/' + map.path;
         if (addPath.length > 0 && addPath !== '/') {
+            // For Vivid Wave and earlier, add /p
             if (map.version < 6) redirectURL += '/p';
             redirectURL += addPath;
         }
@@ -97,6 +103,7 @@ exports.redirector = onRequest((req, res) => {
             addPath = '/' + req.path.substr(r[0].length + 1);
         redirectURL = BASEURL + path;
         if (addPath.length > 0 && addPath !== '/') {
+            // For Vivid Wave and earlier, add /p
             if (version < 6)
                 redirectURL += '/p';
             redirectURL += addPath;
