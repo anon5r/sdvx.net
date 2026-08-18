@@ -51,8 +51,8 @@ const shortCode = {
 
 exports.redirector = onRequest((req, res) => {
     console.info('req.path=', req.path);
-    let redirectURL = LATEST_URL;
-    let version = 1;
+    let redirectURL;
+    let version;
     let pathWithoutSlash = (req.path !== null) ? req.path.substr(1) : '';
     if (pathWithoutSlash.indexOf('/') > -1)
         pathWithoutSlash = pathWithoutSlash.substr(0, pathWithoutSlash.indexOf('/'));
