@@ -35,8 +35,9 @@ Redirect to related sites/pages
 
 # Requirements
 
-- [Firebase Hosting](https://firebase.google.com/products/hosting/)
-- [Firebase Functions](https://firebase.google.com/products/functions/)
+- [Cloudflare Workers](https://workers.cloudflare.com/)
+- [Node.js](https://nodejs.org/) (>= 24)
+- [pnpm](https://pnpm.io/) (>= 10.11.0)
 
 
 # Rightments

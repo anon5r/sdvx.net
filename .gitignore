@@ -18,6 +18,9 @@ Thumbs.db
 # Firebase cache
 .firebase/
 
+# Wrangler / Cloudflare
+.wrangler/
+
 # Firebase config
 
 # Uncomment this if you'd like others to create their own Firebase project.
