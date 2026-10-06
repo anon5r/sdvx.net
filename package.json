@@ -16,10 +16,10 @@
     "firebase/functions"
   ],
   "scripts": {
-    "dev": "pnpm build:pages && wrangler dev",
+    "dev": "wrangler dev",
     "dev:pages": "pnpm --filter @sdvx/pages dev",
     "build:pages": "pnpm --filter @sdvx/pages build",
-    "deploy": "pnpm build:pages && wrangler deploy",
+    "deploy": "wrangler deploy",
     "test": "vitest run",
     "typecheck": "tsc --noEmit && pnpm --filter @sdvx/pages typecheck"
   },
