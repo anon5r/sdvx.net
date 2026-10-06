@@ -1,4 +1,5 @@
 packages:
+  - pages
   - firebase/functions
 allowBuilds:
   '@firebase/util': true

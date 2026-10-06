@@ -31,7 +31,7 @@ Redirect to related sites/pages
 
 ### Original content
 
-- `/bemani_jackets.html` BEMANI song jacket viewer
+- `/bemani_jackets` (`/bemani_jackets.html`) BEMANI song jacket viewer (React + Vite, `pages/`)
 
 # Requirements
 
@@ -39,6 +39,30 @@ Redirect to related sites/pages
 - [Node.js](https://nodejs.org/) (>= 24)
 - [pnpm](https://pnpm.io/) (>= 10.11.0)
 
+
+# Development
+
+| Command | Description |
+| --- | --- |
+| `pnpm dev:pages` | Start Vite dev server for `pages/` |
+| `pnpm dev` | Build `pages/` and start `wrangler dev` (Worker + static assets) |
+| `pnpm test` | Run unit tests (vitest) |
+| `pnpm typecheck` | Type check Worker and pages |
+| `pnpm deploy` | Build `pages/` into `pages/dist` and deploy to Cloudflare Workers |
+
+`pages/` is a React + TypeScript (Vite) app. Its build output (`pages/dist`) is served as Workers static assets (see `wrangler.jsonc`).
+`/` is handled by the Worker as a redirector, so `pages/` has no index page.
+
+## Adding a new page
+
+To add a React page at `/<name>` (e.g. `/foo`):
+
+1. Create `pages/<name>.html` (copy `pages/bemani_jackets.html` and point the `<script>` at `/src/<name>/main.tsx`).
+2. Create `pages/src/<name>/main.tsx` (and the components/styles it uses).
+3. Add `'<name>'` to `PAGE_NAMES` in `src/pages.ts`.
+
+Vite picks up every `pages/*.html` as an entry automatically, and the Worker serves `/<name>`, `/<name>/` and `/<name>.html` from the static assets before the redirector runs.
+`test/pages.test.ts` fails if `PAGE_NAMES` and `pages/*.html` get out of sync.
 
 # Rightments
 

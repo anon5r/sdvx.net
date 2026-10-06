@@ -12,16 +12,20 @@
     "pnpm": ">=10.11.0"
   },
   "workspaces": [
+    "pages",
     "firebase/functions"
   ],
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
+    "dev": "pnpm build:pages && wrangler dev",
+    "dev:pages": "pnpm --filter @sdvx/pages dev",
+    "build:pages": "pnpm --filter @sdvx/pages build",
+    "deploy": "pnpm build:pages && wrangler deploy",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit && pnpm --filter @sdvx/pages typecheck"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261004.1",
+    "@types/node": "^26.6.4",
     "typescript": "^7.0.2",
     "vitest": "^5.0.3",
     "wrangler": "^4.147.0"

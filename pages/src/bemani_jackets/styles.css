@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  padding: 0 1rem 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  color: rgba(0, 0, 0, 0.87);
+}
+h1 {
+  font-family: 'Orbitron', sans-serif;
+}
+hr {
+  border: none;
+  border-bottom: 1px solid rgba(120, 120, 120, 0.3);
+}
+hr.dotted {
+  border-bottom: 1px dotted #ccc;
+}
+.container {
+  max-width: 1127px;
+  margin: 0 auto;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1 1 320px;
+  max-width: 100%;
+}
+.controls select {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0.3rem;
+  background: #fff;
+}
+.segment {
+  padding: 1rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0.3rem;
+  box-shadow: 0 1px 2px rgba(34, 36, 38, 0.15);
+}
+.img-shadow {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+#jacket-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+#jacket-list li {
+  margin: 10px;
+}
+#jacket-list li:empty {
+  display: none;
+}
+.twitter-share-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  background: #1d9bf0;
+  color: #fff;
+  text-decoration: none;
+}

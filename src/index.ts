@@ -1,3 +1,4 @@
+import { isStaticAssetPath } from './pages';
 import { getRedirectUrl } from './redirect';
 
 export interface Env {
@@ -10,13 +11,7 @@ export default {
     const pathname = url.pathname;
 
     // Direct match for known static files if ASSETS binding is present
-    if (
-      env.ASSETS &&
-      (pathname === '/bemani_jackets.html' ||
-        pathname.startsWith('/assets/') ||
-        pathname === '/robots.txt' ||
-        pathname === '/404.html')
-    ) {
+    if (env.ASSETS && isStaticAssetPath(pathname)) {
       return env.ASSETS.fetch(request);
     }
 

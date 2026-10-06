@@ -186,4 +186,21 @@ describe('Worker fetch handler', () => {
     expect(assetFetched).toBe(true);
     expect(res.status).toBe(200);
   });
+
+  it.each(['/bemani_jackets', '/bemani_jackets/', '/bemani_jackets.html', '/assets/bemani_jackets-abc.js', '/robots.txt'])(
+    'serves %s from env.ASSETS',
+    async (path) => {
+      const fetched: string[] = [];
+      const mockAssets = {
+        fetch: async (req: Request) => {
+          fetched.push(new URL(req.url).pathname);
+          return new Response('ok', { status: 200 });
+        },
+      } as unknown as Fetcher;
+
+      const res = await worker.fetch(new Request(`https://sdvx.net${path}`), { ASSETS: mockAssets });
+      expect(fetched).toEqual([path]);
+      expect(res.status).toBe(200);
+    },
+  );
 });

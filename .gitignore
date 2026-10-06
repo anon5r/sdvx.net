@@ -81,3 +81,6 @@ node_modules/
 .idea/
 firebase/functions/.env.default
 firebase/functions/.env.local
+
+# Build output of pages
+pages/dist/
